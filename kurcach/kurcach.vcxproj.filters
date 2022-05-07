@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kurcach.cpp">
+    <ClCompile Include="Notes.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kurcach.h">
+    <ClInclude Include="Notes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

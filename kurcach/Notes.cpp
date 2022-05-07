@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "kurcach.h"
+#include "Notes.h"
 #include <fstream>
 #include <vector>
 
@@ -13,7 +13,7 @@ void show_menu() {
 	cout << "[5] Удалить все записи." << endl;
 	cout << "[6] Редактировать запись." << endl;
 }
-void add_note() {
+void Notes::add_note() {
 	Notes a;
 	cout << "Дата создания записи: "<<endl;
 	a.Set_data_create();
@@ -23,18 +23,19 @@ void add_note() {
 	a.Set_note();
 	cout << "Дедлайн: " << endl;
 	a.Set_dedline();
+	//notes.pushback(a);
 	ofstream file("notes.txt", ios::app);
 	if (!file.is_open()) {
 		cout << "[-] File is note opened!";
 		exit(EXIT_FAILURE);
 	}
-	file << a.Get_data_create() << ' ';
-	file << a.Get_time_create() << ' ';
-	file << a.Get_note() << ' ';
-	file << a.Get_dedline() << endl;
+	file <<"Дата создания записи: "<< a.Get_data_create() << ' ';
+	file <<"Время создания записи: "<< a.Get_time_create() << ' ';
+	file <<"Запись: "<< a.Get_note() << ' ';
+	file <<"Дедлайн: "<< a.Get_dedline() << endl;
 	file.close();
 }
-void see_all_notes() {
+void Notes::see_all_notes() {
 	ifstream file("notes.txt");
 
 	if (!file.is_open()) {
@@ -51,7 +52,7 @@ void see_all_notes() {
 	}
 	file.close();
 }
-string* find_one_note(const string& note_to_find, int &n_count) {
+string* Notes::find_note(const string& note_to_find, int &n_count) {
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "No notes! Add them!" << endl;
@@ -81,7 +82,7 @@ string* find_one_note(const string& note_to_find, int &n_count) {
 	n_count = count;
 	return found_notes;
 }
-string* all_notes(int& n_count) {
+string* Notes::all_notes(int& n_count) {
 	string* all_notes = nullptr;
 	string* all_notes_ptr = nullptr;
 	ifstream file("notes.txt");
@@ -112,7 +113,7 @@ string* all_notes(int& n_count) {
 	n_count = count;
 	return all_notes;
 }
-void remove_one_note(string* all_notes_arr, int count, int choice) {
+void Notes::remove_note(string* all_notes_arr, int count, int choice) {
 	ofstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "[-]Error! File is not opened!" << endl;
@@ -124,7 +125,7 @@ void remove_one_note(string* all_notes_arr, int count, int choice) {
 		file << all_notes_arr[i] << endl;
 	}
 }
-void remove_all_notes() {
+void Notes::remove_all() {
 	fstream file("notes.txt", ios::out | ios::trunc);
 	if (!file.is_open()) {
 		cout << "File is not opened!" << endl;
