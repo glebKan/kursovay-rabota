@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 void show_menu() {
 	cout << "[1] Добавить запись." << endl;
 	cout << "[2] Показать все записи." << endl;
@@ -15,6 +16,12 @@ void show_menu() {
 }
 void Notes::add_note() {
 	Notes a;
+	ofstream file("notes.txt", ios::app);
+	if (!file.is_open()) {
+		cout << "[-] File is note opened!";
+		exit(EXIT_FAILURE);
+	}
+	cout << "Note to add: " << endl;
 	cout << "Дата создания записи: "<<endl;
 	a.Set_data_create();
 	cout << "Время создания записи: "<<endl;
@@ -23,12 +30,6 @@ void Notes::add_note() {
 	a.Set_note();
 	cout << "Дедлайн: " << endl;
 	a.Set_dedline();
-	//notes.pushback(a);
-	ofstream file("notes.txt", ios::app);
-	if (!file.is_open()) {
-		cout << "[-] File is note opened!";
-		exit(EXIT_FAILURE);
-	}
 	file <<"Дата создания записи: "<< a.Get_data_create() << ' ';
 	file <<"Время создания записи: "<< a.Get_time_create() << ' ';
 	file <<"Запись: "<< a.Get_note() << ' ';
@@ -37,9 +38,8 @@ void Notes::add_note() {
 }
 void NoteBook::see_all_notes() {
 	ifstream file("notes.txt");
-
 	if (!file.is_open()) {
-		cout << "No notes! Add them!"<<endl;
+		cout << "No notes or file no find!"<<endl;
 		return;
 	}
 	string one_note;
@@ -85,6 +85,9 @@ string* Notes::find_note(const string& note_to_find, int &n_count) {
 string* Notes::all_notes(int& n_count) {
 	string* all_notes = nullptr;
 	string* all_notes_ptr = nullptr;
+	/*string filename;
+	cout << "Введите название книги, с которой хотите работать: ";
+	getline(cin, filename);*/
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "File is not opened!";
@@ -114,6 +117,9 @@ string* Notes::all_notes(int& n_count) {
 	return all_notes;
 }
 void Notes::remove_note(string* all_notes_arr, int count, int choice) {
+	/*string filename;
+	cout << "Введите название книги, с которой хотите работать: ";
+	getline(cin, filename);*/
 	ofstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "[-]Error! File is not opened!" << endl;
@@ -124,6 +130,7 @@ void Notes::remove_note(string* all_notes_arr, int count, int choice) {
 			continue;
 		file << all_notes_arr[i] << endl;
 	}
+	file.close();
 }
 void NoteBook::remove_all() {
 	fstream file("notes.txt", ios::out | ios::trunc);

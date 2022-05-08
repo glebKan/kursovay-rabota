@@ -28,20 +28,15 @@ int main() {
 		switch (choice) {
 			case '1': {
 				system("cls");
-				/*string new_note;*/
-				cout << "Note to add: "<<endl;
-				/*getline(cin, new_note);
-				getline(cin, new_note);*/
 				a.add_note();
 				cout << "Note added!" << endl;
-				break;
-			}	
+			}
+					break;
 			case '2': {
 				system("cls");
 				b.see_all_notes();
-				break;
 			}
-					
+					break;
 			case '3': {
 				system("cls");
 				string note_to_find;
@@ -74,13 +69,15 @@ int main() {
 				cin >> choice;
 				a.remove_note(all_notes_arr, count, choice);
 				cout << "Your note removed" << endl;
-				delete[] all_notes_arr;;
+				delete[] all_notes_arr;
+				break;
 			}
 					break;
 			case '5': {
 				system("cls");
 				b.remove_all();
 				cout << "Remove all notes!" << endl;
+				break;
 			}
 					break;
 			case '6': {
