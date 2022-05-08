@@ -61,6 +61,16 @@ public:
 };
 
 
+struct NoteBook: public Notes{
+	void see_all_notes();
+	void remove_all();
+};
+
+
+
+
+
+
 void show_menu();
 
 #endif

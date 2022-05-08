@@ -35,7 +35,7 @@ void Notes::add_note() {
 	file <<"Дедлайн: "<< a.Get_dedline() << endl;
 	file.close();
 }
-void Notes::see_all_notes() {
+void NoteBook::see_all_notes() {
 	ifstream file("notes.txt");
 
 	if (!file.is_open()) {
@@ -125,7 +125,7 @@ void Notes::remove_note(string* all_notes_arr, int count, int choice) {
 		file << all_notes_arr[i] << endl;
 	}
 }
-void Notes::remove_all() {
+void NoteBook::remove_all() {
 	fstream file("notes.txt", ios::out | ios::trunc);
 	if (!file.is_open()) {
 		cout << "File is not opened!" << endl;

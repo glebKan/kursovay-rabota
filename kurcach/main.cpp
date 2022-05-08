@@ -17,6 +17,7 @@ int main() {
 	char choice;
 	char Exit;
 	Notes a;
+	NoteBook b;
 	do {
 		do {
 			system("cls");
@@ -37,7 +38,7 @@ int main() {
 			}	
 			case '2': {
 				system("cls");
-				a.see_all_notes();
+				b.see_all_notes();
 				break;
 			}
 					
@@ -78,7 +79,7 @@ int main() {
 					break;
 			case '5': {
 				system("cls");
-				a.remove_all();
+				b.remove_all();
 				cout << "Remove all notes!" << endl;
 			}
 					break;
