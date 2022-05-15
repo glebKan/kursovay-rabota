@@ -14,7 +14,7 @@ void show_menu() {
 	cout << "[5] Удалить все записи." << endl;
 	cout << "[6] Редактировать запись." << endl;
 }
-void Notes::add_note() {
+void NoteBook::add_note() {
 	Notes a;
 	ofstream file("notes.txt", ios::app);
 	if (!file.is_open()) {
@@ -52,7 +52,7 @@ void NoteBook::see_all_notes() {
 	}
 	file.close();
 }
-string* Notes::find_note(const string& note_to_find, int &n_count) {
+string* NoteBook::find_note(const string& note_to_find, int &n_count) {
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "No notes! Add them!" << endl;
@@ -82,7 +82,7 @@ string* Notes::find_note(const string& note_to_find, int &n_count) {
 	n_count = count;
 	return found_notes;
 }
-string* Notes::all_notes(int& n_count) {
+string* NoteBook::all_notes(int& n_count) {
 	string* all_notes = nullptr;
 	string* all_notes_ptr = nullptr;
 	/*string filename;
@@ -116,10 +116,7 @@ string* Notes::all_notes(int& n_count) {
 	n_count = count;
 	return all_notes;
 }
-void Notes::remove_note(string* all_notes_arr, int count, int choice) {
-	/*string filename;
-	cout << "Введите название книги, с которой хотите работать: ";
-	getline(cin, filename);*/
+void NoteBook::remove_note(string* all_notes_arr, int count, int choice) {
 	ofstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "[-]Error! File is not opened!" << endl;

@@ -52,16 +52,15 @@ public:
 	string Get_dedline() {
 		return dedline;
 	}
-	void add_note();
-	void see_all_notes();
-	string* find_note(const string& note_to_find, int& n_count);
-	string* all_notes(int& count);
-	void remove_note(string* all_notes_arr, int count, int choice);
-	void remove_all();
 };
 
 
-struct NoteBook: public Notes{
+class NoteBook{
+public:
+	void add_note();
+	string* find_note(const string& note_to_find, int& n_count);
+	string* all_notes(int& count);
+	void remove_note(string* all_notes_arr, int count, int choice);
 	void see_all_notes();
 	void remove_all();
 };
