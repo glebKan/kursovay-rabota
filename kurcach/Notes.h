@@ -6,9 +6,6 @@
 using namespace std;
 
 
-//struct NoteBook{
-//private:
-//	vector <Notes> MyBook(5)
 
 
 
