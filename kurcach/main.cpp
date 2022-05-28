@@ -62,8 +62,13 @@ int main() {
 				cout << "Number of note to remove: ";
 				int choice = 0;
 				cin >> choice;
-				b.remove_note(all_notes_arr, count, choice);
-				cout << "Your note removed" << endl;
+				if (choice <1 or choice > count) {
+					 cout << "Вы выбрали некоректный номер записи, повторите попытку!";
+				}
+				else {
+					b.remove_note(all_notes_arr, count, choice);
+					cout << "Your note removed" << endl;
+				}
 				delete[] all_notes_arr;
 				break;
 			}
@@ -87,13 +92,12 @@ int main() {
 				cout << "Number of note to edit: ";
 				int choice = 0;
 				cin >> choice;
-				if ((choice < 1) or (choice > count)) {
+				if (choice < 1 or choice > count) {
 					cout << "Вы выбрали некоректный номер записи, повторите попытку!";
 					delete[] all_notes_arr;
 				}
 				else {
 					b.remove_note(all_notes_arr, count, choice);
-					a.Set_data_create();
 					b.add_note();
 					cout << "Запись изменена и добавлена в конец списка!" << endl;
 					delete[] all_notes_arr;
