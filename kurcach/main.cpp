@@ -1,8 +1,5 @@
-#include <iostream>
-#include <conio.h>
 #include "Notes.h"
-#include <string>
-#include <fstream>
+#include <conio.h>
 
 
 
@@ -11,13 +8,11 @@
 
 int main() {
 
-	/*NoteBook myBook;
-	myBook.addNote()*/
 	setlocale(0, "rus");
 	char choice;
 	char Exit;
-	Notes a;
 	NoteBook b;
+	Notes a;
 	do {
 		do {
 			system("cls");
@@ -28,7 +23,7 @@ int main() {
 		switch (choice) {
 			case '1': {
 				system("cls");
-				a.add_note();
+				b.add_note();
 				cout << "Note added!" << endl;
 			}
 					break;
@@ -43,11 +38,11 @@ int main() {
 				cout << "Note to find: ";
 				getline(cin, note_to_find);
 				int n_found = 0;
-				string* found_notes = a.find_note(note_to_find, n_found);
+				string* found_notes = b.find_note(note_to_find, n_found);
 				if (found_notes) {
-					cout << "Found notes: ";
+					cout << "Found notes: "<<endl;
 					for (int i = 0; i < n_found; i++)
-						cout << found_notes[i] << endl;
+						cout <<"["<<i+1<<"]"<< found_notes[i] << endl;
 					delete[] found_notes;
 				}
 				else {
@@ -59,7 +54,7 @@ int main() {
 				system("cls");
 				//Получаем все заметки
 				int count = 0;
-				string* all_notes_arr = a.all_notes(count);
+				string* all_notes_arr = b.all_notes(count);
 				//Выводим их в консоль
 				cout << "All notes: " << endl;
 				for (int i = 0; i < count; i++)
@@ -67,7 +62,7 @@ int main() {
 				cout << "Number of note to remove: ";
 				int choice = 0;
 				cin >> choice;
-				a.remove_note(all_notes_arr, count, choice);
+				b.remove_note(all_notes_arr, count, choice);
 				cout << "Your note removed" << endl;
 				delete[] all_notes_arr;
 				break;
@@ -84,7 +79,7 @@ int main() {
 				system("cls");
 				//Получаем все заметки
 				int count = 0;
-				string* all_notes_arr = a.all_notes(count);
+				string* all_notes_arr = b.all_notes(count);
 				//Выводим их в консоль
 				cout << "All notes: " << endl;
 				for (int i = 0; i < count; i++)
@@ -92,13 +87,21 @@ int main() {
 				cout << "Number of note to edit: ";
 				int choice = 0;
 				cin >> choice;
-				a.remove_note(all_notes_arr, count, choice);
-				a.add_note();
-				cout << "Note changed!" << endl;
-				delete[] all_notes_arr;
+				if ((choice < 1) or (choice > count)) {
+					cout << "Вы выбрали некоректный номер записи, повторите попытку!";
+					delete[] all_notes_arr;
+				}
+				else {
+					b.remove_note(all_notes_arr, count, choice);
+					a.Set_data_create();
+					b.add_note();
+					cout << "Запись изменена и добавлена в конец списка!" << endl;
+					delete[] all_notes_arr;
+				}
+				break;
 			}
 		}	
-		cout << endl << "Do you want to make another operation? (1 - yes, 0 - no)" << endl;
+		cout << endl << "Do you want to make another operation? (any button - yes, 0 - no)" << endl;
 		fflush(stdin);
 		Exit = _getch();
 

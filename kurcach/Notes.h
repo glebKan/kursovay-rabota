@@ -2,12 +2,10 @@
 #define KURCACH_H
 #include <iostream>
 #include <string>
-#include <vector>
+#include <fstream>
+
+
 using namespace std;
-
-
-
-
 
 
 struct Notes {
@@ -18,21 +16,29 @@ private:
 	string dedline;
 public:
 	void Set_time_create() {
+		cin.clear();
+		cin.ignore(cin.rdbuf()->in_avail());
 		string tc;
 		getline(cin, tc);
 		time_create = tc;
 	}
 	void Set_data_create() {
+		cin.clear();
+		cin.ignore(cin.rdbuf()->in_avail());
 		string dc;
 		getline(cin, dc);
 		data_create = dc;
 	}
 	void Set_note() {
+		cin.clear();
+		cin.ignore(cin.rdbuf()->in_avail());
 		string nt;
 		getline(cin, nt);
 		note = nt;
 	}
 	void Set_dedline() {
+		cin.clear();
+		cin.ignore(cin.rdbuf()->in_avail());
 		string ded;
 		getline(cin, ded);
 		dedline = ded;
@@ -61,11 +67,6 @@ public:
 	void see_all_notes();
 	void remove_all();
 };
-
-
-
-
-
 
 void show_menu();
 

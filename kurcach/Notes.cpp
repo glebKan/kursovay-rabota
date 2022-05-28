@@ -1,9 +1,7 @@
-﻿#include <iostream>
-#include "Notes.h"
-#include <fstream>
-#include <vector>
+﻿#include "Notes.h"
 
 using namespace std;
+
 
 
 void show_menu() {
@@ -11,9 +9,12 @@ void show_menu() {
 	cout << "[2] Показать все записи." << endl;
 	cout << "[3] Найти запись." << endl;
 	cout << "[4] Удалить запись." << endl;
-	cout << "[5] Удалить все записи." << endl;
-	cout << "[6] Редактировать запись." << endl;
+	cout << "[5] Удалить все записи." << endl;;
 }
+
+
+
+
 void NoteBook::add_note() {
 	Notes a;
 	ofstream file("notes.txt", ios::app);
@@ -24,18 +25,23 @@ void NoteBook::add_note() {
 	cout << "Note to add: " << endl;
 	cout << "Дата создания записи: "<<endl;
 	a.Set_data_create();
+	file << "Дата создания записи: " << a.Get_data_create() << ' ';
 	cout << "Время создания записи: "<<endl;
 	a.Set_time_create();
+	file << "Время создания записи: " << a.Get_time_create() << ' ';
 	cout << "Запись: "<< endl;
 	a.Set_note();
+	file << "Запись: " << a.Get_note() << ' ';
 	cout << "Дедлайн: " << endl;
 	a.Set_dedline();
-	file <<"Дата создания записи: "<< a.Get_data_create() << ' ';
-	file <<"Время создания записи: "<< a.Get_time_create() << ' ';
-	file <<"Запись: "<< a.Get_note() << ' ';
-	file <<"Дедлайн: "<< a.Get_dedline() << endl;
+	file << "Дедлайн: " << a.Get_dedline() << endl;
 	file.close();
 }
+
+
+
+
+
 void NoteBook::see_all_notes() {
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
@@ -52,6 +58,10 @@ void NoteBook::see_all_notes() {
 	}
 	file.close();
 }
+
+
+
+
 string* NoteBook::find_note(const string& note_to_find, int &n_count) {
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
@@ -82,12 +92,13 @@ string* NoteBook::find_note(const string& note_to_find, int &n_count) {
 	n_count = count;
 	return found_notes;
 }
+
+
+
+
 string* NoteBook::all_notes(int& n_count) {
 	string* all_notes = nullptr;
 	string* all_notes_ptr = nullptr;
-	/*string filename;
-	cout << "Введите название книги, с которой хотите работать: ";
-	getline(cin, filename);*/
 	ifstream file("notes.txt");
 	if (!file.is_open()) {
 		cout << "File is not opened!";
@@ -116,6 +127,11 @@ string* NoteBook::all_notes(int& n_count) {
 	n_count = count;
 	return all_notes;
 }
+
+
+
+
+
 void NoteBook::remove_note(string* all_notes_arr, int count, int choice) {
 	ofstream file("notes.txt");
 	if (!file.is_open()) {
@@ -129,6 +145,10 @@ void NoteBook::remove_note(string* all_notes_arr, int count, int choice) {
 	}
 	file.close();
 }
+
+
+
+
 void NoteBook::remove_all() {
 	fstream file("notes.txt", ios::out | ios::trunc);
 	if (!file.is_open()) {
